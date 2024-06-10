@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.tableContainer {
+  width: 90%;
+  margin: 0px auto 20px auto;
+}
+
+.tableCell {
+  font-size: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.pagination {
+  display: flex;
+  padding-bottom: 40px;
+  justify-content: center;
+}
+
+.usernameContainer {
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.username {
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: center;
+}
