@@ -53,11 +53,20 @@ const AddTask = (props) => {
     }),
   });
 
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const month = `${d.getMonth() + 1}`.padStart(2, "0");
+    const day = `${d.getDate()}`.padStart(2, "0");
+    const year = d.getFullYear();
+    return [year, month, day].join("-");
+  };
+
   const postData = async (values) => {
     setLoading(true);
     try {
+      let formattedDate = formatDate(values.dueDate);
       let res = await axios.post("dashboard/api", {
-        dueDate: values.dueDate,
+        dueDate: formattedDate,
         title: values.title,
         description: values.description,
         type: values.status,
@@ -86,9 +95,10 @@ const AddTask = (props) => {
   const updateData = async (values) => {
     setLoading(true);
     try {
+      let formattedDate = formatDate(values.dueDate);
       let res = await axios.patch(`dashboard/api/${editData.id}`, {
         id: editData.id,
-        dueDate: values.dueDate,
+        dueDate: formattedDate,
         title: values.title,
         description: values.description,
         status: values.status,
@@ -121,7 +131,7 @@ const AddTask = (props) => {
 
   useEffect(() => {
     if (editData.id) {
-      formik.setFieldValue("dueDate", editData.dueDate);
+      formik.setFieldValue("dueDate", formatDate(editData.dueDate));
       formik.setFieldValue("title", editData.title);
       formik.setFieldValue("description", editData.description);
       formik.setFieldValue("status", editData.status);
